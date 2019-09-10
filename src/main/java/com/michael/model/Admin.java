@@ -5,12 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="Admins")
 public class Admin {
 	@Id @Column(name="user_id")
 	private int medStoreid;
 	private String username;
+	@JsonIgnore
 	private String password;
 	@Column(name="medUser")
 	private String medUser;
