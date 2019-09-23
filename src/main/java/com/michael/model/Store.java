@@ -1,51 +1,48 @@
-
 package com.michael.model;
 
-
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Store_list")
+@Table(name="stores")
 public class Store {
-	@Id 
-	private int medStoreid;
-	private String storeName;
-	private String streetNum;
-	private String streetName;
+	
+	@Id @GeneratedValue
+	private long id;
+	private String name;
+	private String street;
 	private String city;
 	private String state;
 	private String zip;
+	private String open24hrs;
+	private String phone;
 	
-	
-	public Store(){}
-	
-	public int getMedStoreid() {
-		return medStoreid;
+
+	public long getId() {
+		return id;
 	}
-	public void setMedStoreid(int medStoreid) {
-		this.medStoreid = medStoreid;
+	public void setId(long id) {
+		this.id = id;
 	}
-	public String getStoreName() {
-		return storeName;
+	public String getPhone() {
+		return phone;
 	}
-	public void setStoreName(String name) {
-		this.storeName = name;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
-	public String getStreetNum() {
-		return streetNum;
+	public String getName() {
+		return name;
 	}
-	public void setStreetNum(String streetNum) {
-		this.streetNum = streetNum;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getStreetName() {
-		return streetName;
+	public String getStreet() {
+		return street;
 	}
-	public void setStreetName(String streetName) {
-		this.streetName = streetName;
+	public void setStreet(String street) {
+		this.street = street;
 	}
 	public String getCity() {
 		return city;
@@ -65,6 +62,13 @@ public class Store {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
+	public String getOpen24hrs() {
+		return open24hrs;
+	}
+	public void setOpen24hrs(String open24hrs) {
+		this.open24hrs = open24hrs;
+	}
+
 	
 	
 }

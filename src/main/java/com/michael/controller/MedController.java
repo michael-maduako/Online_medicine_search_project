@@ -14,39 +14,40 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.michael.model.Store;
-import com.michael.service.StoreService;
+import com.michael.model.Med;
+import com.michael.service.MedService;
 
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin()
 @RestController
-public class StoreController {
+public class MedController {
 	@Autowired
-	private StoreService userService;
+	private MedService medService;
 	
-	
-	@GetMapping("/stores/all")
-	public List<Store> getAllMedicines(){
-		return userService.getAllStores();
+
+	@GetMapping("/med/all")
+	public List<Med> getAllMedicines(){
+		return medService.getAllMedicines();
 	}
 	
-	@GetMapping("/stores/{id}")
-	public Optional<Store> getStore(@PathVariable long id) {
-		return userService.getStoreById(id);
+	@GetMapping("/med/{id}")
+	public Optional<Med> getMedicine(@PathVariable long id) {
+		return medService.getMedById(id);
 	}
 	
-	@PutMapping("stores/update/{id}")
-	public void updateStore(@RequestBody Store store, @PathVariable long id) {
-		userService.updateById(store, id);
-	}
-	
-	@PostMapping("/stores/add-store")
+	@PostMapping("/med/add")
 	//@PreAuthorize("hasRole('MEDUSER') or hasRole('ADMIN')")
-	public void addStore(@RequestBody Store user){
-		 userService.addStore(user);
+	public void addUser(@RequestBody Med user){
+		 medService.addMedicine(user);
 	}
 
-	@DeleteMapping("/stores/delete/{id}")
-	public void deleteStoreById(@PathVariable long id) {
-		userService.deleteStoreById(id);
+	@DeleteMapping("/med/delete/{id}")
+	//@PreAuthorize("hasRole('MEDUSER') or hasRole('ADMIN')")
+	public void deleteMed(@PathVariable long id) {
+		medService.deleteById(id);
+	}
+	
+	@PutMapping("/med/update/{id}")
+	public void updateMed(@RequestBody Med med, @PathVariable long id) {
+		medService.updateMedicineById(med,id);
 	}
 }
