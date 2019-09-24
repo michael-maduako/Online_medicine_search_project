@@ -21,7 +21,6 @@ public class BloodService {
 	}
 
 	public Optional<Blood> getBloodById(long id) {
-		// optional handles nullpointerexceptions
 		return userRepo.findById(id);
 	}
 

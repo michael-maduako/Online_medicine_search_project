@@ -14,6 +14,8 @@ public class MedService {
 	
 	@Autowired
 	private MedRepo medRepo;
+	
+	
 
 	public List<Med> getAllMedicines() {
 		medRepo.findAll().forEach(System.out::println);
@@ -27,6 +29,10 @@ public class MedService {
 
 	public void addMedicine(Med med) {
 		medRepo.save(med);
+	}
+	
+	public Optional<Med> getByStoreName(String name){
+		return medRepo.findByStoreName(name);
 	}
 	
 //	public void deleteMedicineById(Medicines user) {

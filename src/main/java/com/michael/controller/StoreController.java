@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +26,8 @@ public class StoreController {
 	
 	
 	@GetMapping("/stores/all")
+	@PreAuthorize("permitAll()")
+
 	public List<Store> getAllMedicines(){
 		return userService.getAllStores();
 	}
@@ -40,7 +43,7 @@ public class StoreController {
 	}
 	
 	@PostMapping("/stores/add-store")
-	//@PreAuthorize("hasRole('MEDUSER') or hasRole('ADMIN')")
+	@PreAuthorize("hasRole('MEDUSER') or hasRole('ADMIN')")
 	public void addStore(@RequestBody Store user){
 		 userService.addStore(user);
 	}

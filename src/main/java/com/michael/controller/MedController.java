@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +26,7 @@ public class MedController {
 	
 
 	@GetMapping("/med/all")
+	@PreAuthorize("permitAll()")
 	public List<Med> getAllMedicines(){
 		return medService.getAllMedicines();
 	}
@@ -32,6 +34,11 @@ public class MedController {
 	@GetMapping("/med/{id}")
 	public Optional<Med> getMedicine(@PathVariable long id) {
 		return medService.getMedById(id);
+	}
+	
+	@GetMapping("/med/{name}")
+	public Optional<Med> getByStoreName(String name){
+		return medService.getByStoreName(name);
 	}
 	
 	@PostMapping("/med/add")
@@ -45,6 +52,7 @@ public class MedController {
 	public void deleteMed(@PathVariable long id) {
 		medService.deleteById(id);
 	}
+	
 	
 	@PutMapping("/med/update/{id}")
 	public void updateMed(@RequestBody Med med, @PathVariable long id) {

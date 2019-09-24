@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,25 +27,26 @@ public class BloodController {
 	private BloodService userService;
 	
 	@GetMapping("/")
+	@PreAuthorize("permitAll()")
 	public List<Blood> getAllUsers(){
 		return userService.retrieveAllBloodInfo();
 	}
 	
 	@GetMapping("/{id}")
-	public Optional<Blood> getUser(@PathVariable long id) {
+	public Optional<Blood> getBloodById(@PathVariable long id) {
 		return userService.getBloodById(id);
 	}
 	
 	
 	@PostMapping("/add-blood")
-	//@PreAuthorize("hasRole('BLOOD') or hasRole('ADMIN')")
-	public void addUser(@RequestBody Blood user){
+	@PreAuthorize("permitAll()")
+	public void addBloodInfo(@RequestBody Blood user){
 		 userService.addBloodInfo(user);
 	}
 
 	@DeleteMapping("/user/{id}")
 	//@PreAuthorize("hasRole('BLOOD') or hasRole('ADMIN')")
-	public void deleteMed(@PathVariable long id) {
+	public void deleteBloodById(@PathVariable long id) {
 		userService.deleteBloodById(id);
 	}
 	
