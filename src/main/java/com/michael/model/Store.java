@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="stores")
@@ -11,13 +12,20 @@ public class Store {
 	
 	@Id @GeneratedValue
 	private long id;
+    @NotBlank
 	private String name;
+    @NotBlank
 	private String street;
+    @NotBlank
 	private String city;
-	private String state;
-	private String zip;
-	private String open24hrs;
-	private String phone;
+    @NotBlank
+    private String state;
+    @NotBlank
+    private String zip;
+    @NotBlank
+    private String open24hrs;
+    @NotBlank
+    private String phone;
 	
 
 	public long getId() {
